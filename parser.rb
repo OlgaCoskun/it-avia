@@ -2,17 +2,15 @@ require 'debug'
 
 class CimpParser
   def self.parse(file = 'files/TEST_FBL_0702.txt')
-    if File.exist?(file)
-      arr_lines = File.open(file, 'r').to_a.map!(&:chomp)
-      flight_params = arr_lines[1].split("/")
+    return puts 'Sorry, the file was not found' unless File.exist?(file)
 
-      airbills = []
-      arr_lines.map { |line| airbills << line if line.split("-").size == 2 }
+    arr_lines = File.open(file, 'r').to_a.map!(&:chomp)
+    flight_params = arr_lines[1].split("/")
 
-      print_report(arr_lines, flight_params, airbills)
-    else
-      puts 'Sorry, the file was not found'
-    end
+    airbills = []
+    arr_lines.map { |line| airbills << line if line.split("-").size == 2 }
+
+    print_report(arr_lines, flight_params, airbills)
   end
 
   def self.print_report(arr_lines, flight_params, airbills)
