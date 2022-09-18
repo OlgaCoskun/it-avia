@@ -4,7 +4,7 @@ class CimpParser
   def self.parse(file = 'files/TEST_FBL_0702.txt')
     return puts 'Sorry, the file was not found' unless File.exist?(file)
 
-    arr_lines = File.open(file, 'r').to_a.map!(&:chomp)
+    arr_lines = File.open(file, 'r') { |f| f.to_a.map!(&:chomp) }
     flight_params = arr_lines[1].split("/")
 
     airbills = []
